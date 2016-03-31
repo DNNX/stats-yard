@@ -9,6 +9,7 @@ defmodule StatsYard do
     children = [
       # Define workers and child supervisors to be supervised
       # worker(StatsYard.Worker, [arg1, arg2, arg3]),
+      worker(StatsYard.TimestampWriter, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
