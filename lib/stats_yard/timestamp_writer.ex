@@ -6,7 +6,7 @@ defmodule StatsYard.TimestampWriter do
   ###
 
   def write_timestamp(filename, timestamp) do
-    GenServer.cast(__MODULE__, {:write_timestamp, filename, timestamp})
+    GenServer.call(__MODULE__, {:write_timestamp, filename, timestamp})
   end
 
   def start_link() do
@@ -21,8 +21,8 @@ defmodule StatsYard.TimestampWriter do
     {:ok, state}
   end
 
-  def handle_cast({:write_timestamp, filename, timestamp}, state) do
-    :ok = File.write(filename, "#{timestamp}")
-    {:noreply, state}
+  def handle_call({:write_timestamp, filename, timestamp}, _from, state) do
+    result = File.write(filename, "#{timestamp}")
+    {:reply, result, state}
   end
 end
