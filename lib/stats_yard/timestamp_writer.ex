@@ -1,10 +1,25 @@
 defmodule StatsYard.TimestampWriter do
   use GenServer
 
+  @moduledoc """
+  This module is entirely devoted to writing timestamps to files.
+  """
+
   ###
   ### Public API
   ###
 
+  @doc """
+  Writes the given timestamp to the given filename.
+
+  ## Examples
+
+    iex> StatsYard.Timestampwriter.write_timestamp("/tmp/foo.time", :os.system_time(1000))
+    :ok
+
+  """
+
+  @spec write_timestamp(String.t, pos_integer) :: atom
   def write_timestamp(filename, timestamp) do
     GenServer.call(__MODULE__, {:write_timestamp, filename, timestamp})
   end
