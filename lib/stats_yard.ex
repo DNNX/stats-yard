@@ -1,4 +1,5 @@
 defmodule StatsYard do
+  @moduledoc false
   use Application
 
   def start(_type, _args) do
@@ -22,7 +23,8 @@ defmodule StatsYard do
 
     children = [
       worker(BlockingQueue, [1000, [name: main_ingest_queue]]),
-      worker(StatsYard.IngestConsumer, [main_ingest_queue, [name: main_ingest_consumer]])
+      worker(StatsYard.IngestConsumer, [main_ingest_queue,
+        [name: main_ingest_consumer]])
     ]
 
     opts = [strategy: :rest_for_one, name: StatsYard.MainIngestSupervisor]

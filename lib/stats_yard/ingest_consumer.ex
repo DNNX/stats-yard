@@ -1,10 +1,15 @@
 defmodule StatsYard.IngestConsumer do
+  @moduledoc """
+  GenServer responsible for consuming messages off the main ingest queue
+  """
+
   use GenServer
+  alias StatsYard.DataPoint
   require Logger
 
   defp consume_data_points(ingest_queue) do
     for stat <- BlockingQueue.pop_stream(ingest_queue) do
-      case StatsYard.DataPoint.validate(stat) do
+      case DataPoint.validate(stat) do
         {:ok, val} -> val
         {:invalid, val} -> val
       end

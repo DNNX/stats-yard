@@ -32,7 +32,8 @@ defmodule StatsYard.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:blocking_queue, "~> 1.3"}
+      {:blocking_queue, "~> 1.3"},
+      {:credo, "~> 0.3", only: [:dev, :test]}
     ]
   end
 end
