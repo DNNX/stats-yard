@@ -1,4 +1,8 @@
 defmodule StatsYard.DataPoint do
+  @moduledoc """
+  Define the structure and validation functions for incoming stats data points
+  """
+
   require Logger
 
   @type t :: %__MODULE__{metric: String.t, value: number, entity: String.t}
@@ -8,7 +12,8 @@ defmodule StatsYard.DataPoint do
     when is_binary(metric)
     and is_binary(entity)
     and is_number(value) do
-      Logger.debug("valid stat: #{inspect(%__MODULE__{metric: metric, value: value, entity: entity})}")
+      Logger.debug("valid stat: #{inspect(%__MODULE__{metric: metric,
+        value: value, entity: entity})}")
       {:ok, %__MODULE__{metric: metric, value: value, entity: entity}}
   end
 

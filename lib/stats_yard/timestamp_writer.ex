@@ -14,7 +14,8 @@ defmodule StatsYard.TimestampWriter do
 
   ## Examples
 
-    iex> StatsYard.Timestampwriter.write_timestamp("/tmp/foo.time", :os.system_time(1000))
+    iex> StatsYard.Timestampwriter.write_timestamp("/tmp/foo.time",
+      :os.system_time(1000))
     :ok
 
   """
